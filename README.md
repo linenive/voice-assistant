@@ -7,6 +7,17 @@
 - 아케이드 버튼 60mm
 - 스피커 (3.5mm)
 
+## 프로젝트 구성
+voice-assistant/
+  ├── main.py          # 메인 루프
+  ├── stt.py           # 음성 → 텍스트 (Whisper)
+  ├── llm.py           # Claude API 호출
+  ├── tts.py           # 텍스트 → 음성 (gTTS)
+  ├── button.py        # 버튼 제어 (GPIO)
+  ├── history.py       # 대화 기록 관리
+  ├── config.py
+  └── README.md
+
 ## 자주 쓰는 명령어
 
 ### 가상환경 활성화
