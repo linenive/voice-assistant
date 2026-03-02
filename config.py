@@ -25,5 +25,5 @@ SYSTEM_PROMPT = """당신은 친절한 AI 음성 어시스턴트입니다.
 따뜻하고 친근한 말투로 대화해주세요."""
 
 # 대화 기록 설정
-HISTORY_PATH = "/home/jan/Develop/voice-assistant/history.json"
+HISTORY_PATH = "/home/jan/Develop/voice-assistant/history"
 MAX_HISTORY = 20  # 최대 대화 기록 수
