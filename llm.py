@@ -4,6 +4,8 @@ import anthropic
 from config import ANTHROPIC_API_KEY, MODEL, MAX_TOKENS, SYSTEM_PROMPT
 from history import get_claude_messages
 from memory import search_memories
+from datetime import datetime
+import pytz
 
 client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
@@ -15,6 +17,10 @@ def _build_system_prompt_with_memory(last_user_text: str) -> str:
     """
     system_prompt = SYSTEM_PROMPT
 
+    tz = pytz.timezone("Asia/Seoul")
+    now = datetime.now(tz).strftime("%Y년 %m월 %d일 %H:%M")
+    system_prompt += f"현재 시각 : {now} (강남구 기준) \n"
+
     relevant = search_memories(last_user_text, limit=5)
     if not relevant:
         return system_prompt
@@ -25,6 +31,7 @@ def _build_system_prompt_with_memory(last_user_text: str) -> str:
         return system_prompt
 
     memory_block = "\n".join(memory_lines)
+    # TODO: 로그로 남기면 좋겠는데 로그가 너무 많아서 보기 괴롭다.
 
     system_prompt += (
         "\n\n[사용자에 대한 과거 중요한 정보]\n"
