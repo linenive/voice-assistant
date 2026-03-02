@@ -6,6 +6,9 @@ from stt import transcribe
 from llm import ask_claude
 from tts import speak
 from history import load_history, add_message
+from memory import update_long_term_memory_from_text
+from conversation import build_recent_dialog
+
 
 def main():
     print("🎙️ 음성 어시스턴트 시작!")
@@ -32,9 +35,13 @@ def main():
                     
                     if text:
                         print(f"할머니: {text}")
-                        
+
                         # 대화 기록에 추가
                         messages = add_message(messages, "user", text)
+
+                        # 최근 몇 턴의 대화를 기반으로 장기 기억 후보 추출
+                        recent_dialog = build_recent_dialog(messages, turns=3)
+                        update_long_term_memory_from_text(recent_dialog)
                         
                         # Claude 호출
                         response = ask_claude(messages)
