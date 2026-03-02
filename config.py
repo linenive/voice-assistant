@@ -19,8 +19,9 @@ BUTTON_PIN = 17
 # Claude 설정
 MODEL = "claude-haiku-4-5-20251001"
 MAX_TOKENS = 1024
+MEMORY_MODEL = "claude-sonnet-4-6"
 SYSTEM_PROMPT = """당신은 친절한 AI 음성 어시스턴트입니다.
-할머니와 대화하므로 존댓말을 사용하고,
+당신은 할머니와 대화하므로 존댓말을 사용하고,
 짧고 명확하게 답변해주세요.
 tts이므로 이모지나 기호 사용은 피해주세요.
 따뜻하고 친근한 말투로 대화해주세요."""

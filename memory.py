@@ -4,14 +4,14 @@ import re
 from datetime import datetime
 
 import anthropic
-from config import ANTHROPIC_API_KEY, HISTORY_PATH, MODEL
+from config import ANTHROPIC_API_KEY, HISTORY_PATH, MEMORY_MODEL
 
 # 장기 기억은 history 폴더 안의 별도 파일에 저장
 MEMORY_FILE = os.path.join(HISTORY_PATH, "long_memory.json")
 
-# 메모리 판단용 Claude 클라이언트 (메인 대화와 같은 키/모델 사용)
+# 메모리 판단용 Claude 클라이언트 (장기 기억 전용 모델 사용)
 _memory_client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
-_MEMORY_MODEL = MODEL
+_MEMORY_MODEL = MEMORY_MODEL
 
 
 def _load_memories():
@@ -105,10 +105,10 @@ def _call_memory_tool(text: str):
     )
 
     try:
-        print("[memory] _call_memory_tool 호출, Claude에게 메모리 판단 요청")
+        print(f"[memory] _call_memory_tool 호출, Claude에게 메모리 판단 요청. text: {text}")
         response = _memory_client.messages.create(
             model=_MEMORY_MODEL,
-            max_tokens=64,
+            max_tokens=128,
             system=system_prompt,
             tools=tools,
             # 메모리 판단용 내부 호출이므로 role은 단순 user 하나만 사용

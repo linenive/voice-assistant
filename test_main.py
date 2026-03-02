@@ -37,7 +37,7 @@ def main():
             messages = add_message(messages, "user", text)
 
             # 최근 몇 턴의 대화를 기반으로 장기 기억 후보 추출
-            recent_dialog = build_recent_dialog(messages, turns=3)
+            recent_dialog = build_recent_dialog(messages, turns=4)
             update_long_term_memory_from_text(recent_dialog)
             
             # Claude 호출
