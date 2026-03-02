@@ -4,3 +4,6 @@ venv/
 __pycache__/
 *.wav
 *.mp3
+
+# 대화 기록 폴더 무시
+history/
