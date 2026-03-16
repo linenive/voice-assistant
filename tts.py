@@ -7,7 +7,7 @@ def speak(text):
     try:
         tts = gTTS(text=text, lang='ko')
         tts.save(RESPONSE_PATH)
-        subprocess.run(['mpg321', RESPONSE_PATH])
+        subprocess.run(['mpg321', '-a', 'plughw:3,0', RESPONSE_PATH])
 
     except Exception as e:
         print(f"TTS 오류: {e}")

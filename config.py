@@ -12,8 +12,8 @@ SAMPLE_RATE = 16000
 CHANNELS = 1
 RECORDING_PATH = "/tmp/recording.wav"
 RESPONSE_PATH = "/tmp/response.mp3"
-INPUT_DEVICE = 1   # seeed2micvoicec
-OUTPUT_DEVICE = 1  # seeed2micvoicec (3.5mm 잭)
+INPUT_DEVICE = 2   # seeed2micvoicec
+OUTPUT_DEVICE = 2  # seeed2micvoicec (3.5mm 잭)
 
 # 버튼 GPIO 핀 번호
 BUTTON_PIN = 17
