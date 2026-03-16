@@ -7,3 +7,6 @@ __pycache__/
 
 # 대화 기록 폴더 무시
 history/
+
+# 출력 파일 무시
+output/

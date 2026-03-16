@@ -48,3 +48,24 @@ hostname -I
 - scipy: 녹음 파일 저장
 - gtts: 텍스트 → 음성 변환
 - pygame: 음성 파일 재생
+
+## ReSpeaker 2-Mics Pi HAT V2.0 설치
+
+### 주의사항
+- 이 보드는 V2.0으로 칩이 WM8960 → TLV320AIC3104(AC31041)로 변경됨
+- V1용 드라이버(seeed-voicecard)는 동작하지 않음
+- 커널 6.12에서는 wm8960-soundcard 오버레이가 동작하지 않음
+- 현재 커널 버전: 6.6.20 (rpi-update로 다운그레이드)
+
+### 설치 방법
+git clone https://github.com/Seeed-Studio/seeed-linux-dtoverlays.git
+cd seeed-linux-dtoverlays
+make overlays/rpi/respeaker-2mic-v2_0-overlay.dtbo
+sudo cp overlays/rpi/respeaker-2mic-v2_0-overlay.dtbo \
+  /boot/firmware/overlays/respeaker-2mic-v2_0.dtbo
+echo "dtoverlay=respeaker-2mic-v2_0" | sudo tee -a /boot/firmware/config.txt
+sudo reboot
+
+### 테스트
+arecord -D plughw:3,0 -f S16_LE -r 16000 -c 2 -d 5 /tmp/test.wav
+aplay -D plughw:3,0 /tmp/test.wav
