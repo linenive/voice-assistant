@@ -54,8 +54,6 @@ hostname -I
 ### 주의사항
 - 이 보드는 V2.0으로 칩이 WM8960 → TLV320AIC3104(AC31041)로 변경됨
 - V1용 드라이버(seeed-voicecard)는 동작하지 않음
-- 커널 6.12에서는 wm8960-soundcard 오버레이가 동작하지 않음
-- 현재 커널 버전: 6.6.20 (rpi-update로 다운그레이드)
 
 ### 설치 방법
 git clone https://github.com/Seeed-Studio/seeed-linux-dtoverlays.git
