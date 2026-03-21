@@ -3,10 +3,12 @@ from config import OPENAI_API_KEY, RECORDING_PATH
 
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
-def transcribe():
-    """녹음 파일을 텍스트로 변환"""
+
+def transcribe(recording_path: str | None = None):
+    """녹음 파일을 텍스트로 변환. 경로를 주지 않으면 기본 RECORDING_PATH."""
+    path = recording_path if recording_path is not None else RECORDING_PATH
     try:
-        with open(RECORDING_PATH, 'rb') as f:
+        with open(path, "rb") as f:
             response = client.audio.transcriptions.create(
                 model="whisper-1",
                 file=f,

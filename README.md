@@ -45,7 +45,7 @@ hostname -I
 ## 화면 표시 (선택, [cli-gui](../cli-gui))
 - 같은 레벨의 `cli-gui/src/cli_gui/`를 `PYTHONPATH`에 붙여 **`python -m cli_gui`** 로 띄웁니다. PyQt6는 [cli-gui `pyproject.toml`](../cli-gui/pyproject.toml)에 있으므로 **같은 venv에서** `pip install -e ../cli-gui` 후 **`python main.py`** 로 실행합니다.
 - SSH에서 `DISPLAY`가 비면 자식에 `DISPLAY=:0`, `~/.Xauthority`(있을 때)를 넣습니다.
-- `show_gui(..., append=True)` → cli-gui `show -a`, 이전 문구 아래 누적(대화 줄 등).
+- `show_gui(..., partition=n)` → cli-gui `show -p n`과 동일. `partition` 0=상, 1=중, 2=하(기본 0).
 - 로그: `/tmp/voice_assistant_gui_client.log`
 
 ## 오디오 (선택)
