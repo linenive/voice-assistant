@@ -1,4 +1,5 @@
 import os
+import sounddevice as sd
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -7,13 +8,26 @@ load_dotenv()
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
+
+def _portaudio_device_index(slot: int, env_var: str) -> int | None:
+    """slot 0=입력, 1=출력. env_var에 정수를 주면 그 인덱스로 고정."""
+    raw = os.getenv(env_var)
+    if raw is not None and raw.strip() != "":
+        return int(raw)
+    idx = sd.default.device[slot]
+    return None if idx is None else int(idx)
+
+
 # 오디오 설정
 SAMPLE_RATE = 16000
 CHANNELS = 1
 RECORDING_PATH = "/tmp/recording.wav"
 RESPONSE_PATH = "/tmp/response.mp3"
-INPUT_DEVICE = 2   # seeed2micvoicec
-OUTPUT_DEVICE = 2  # seeed2micvoicec (3.5mm 잭)
+INPUT_DEVICE = _portaudio_device_index(0, "VOICE_INPUT_DEVICE")
+OUTPUT_DEVICE = _portaudio_device_index(1, "VOICE_OUTPUT_DEVICE")
+
+# mpg321: ALSA "pulse" → PipeWire/Pulse 기본 sink(유튜브·BT 등과 동일). "default"는 3.5mm로만 잡히는 경우가 많음.
+ALSA_PLAYBACK_DEVICE = os.getenv("VOICE_ALSA_OUTPUT", "pulse")
 
 # 버튼 GPIO 핀 번호
 BUTTON_PIN = 17

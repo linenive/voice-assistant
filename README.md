@@ -21,7 +21,7 @@ voice-assistant/
 ## 자주 쓰는 명령어
 
 ### 가상환경 활성화
-source venv/bin/activate
+source .venv/bin/activate
 
 ### 프로그램 실행
 python3 main.py
@@ -40,6 +40,11 @@ pinout
 
 ### IP 확인
 hostname -I
+
+## 오디오 (선택)
+기본은 PortAudio 기본 입·출력 + TTS는 ALSA `pulse`(PipeWire 기본과 동일). 필요 시 환경 변수로 고정:
+- `VOICE_INPUT_DEVICE`, `VOICE_OUTPUT_DEVICE`: 장치 인덱스(정수)
+- `VOICE_ALSA_OUTPUT`: `mpg321 -a`에 넘길 ALSA 이름(기본 `pulse`)
 
 ## 라이브러리
 - anthropic: Claude API 호출
