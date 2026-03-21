@@ -10,6 +10,7 @@
 ## 프로젝트 구성
 voice-assistant/
   ├── main.py          # 메인 루프
+  ├── gui_client.py    # cli-gui 창에 상태 표시(선택)
   ├── stt.py           # 음성 → 텍스트 (Whisper)
   ├── llm.py           # Claude API 호출
   ├── tts.py           # 텍스트 → 음성 (gTTS)
@@ -40,6 +41,12 @@ pinout
 
 ### IP 확인
 hostname -I
+
+## 화면 표시 (선택, [cli-gui](../cli-gui))
+- 같은 레벨의 `cli-gui/src/cli_gui/`를 `PYTHONPATH`에 붙여 **`python -m cli_gui`** 로 띄웁니다. PyQt6는 [cli-gui `pyproject.toml`](../cli-gui/pyproject.toml)에 있으므로 **같은 venv에서** `pip install -e ../cli-gui` 후 **`python main.py`** 로 실행합니다.
+- SSH에서 `DISPLAY`가 비면 자식에 `DISPLAY=:0`, `~/.Xauthority`(있을 때)를 넣습니다.
+- `show_gui(..., append=True)` → cli-gui `show -a`, 이전 문구 아래 누적(대화 줄 등).
+- 로그: `/tmp/voice_assistant_gui_client.log`
 
 ## 오디오 (선택)
 기본은 PortAudio 기본 입·출력 + TTS는 ALSA `pulse`(PipeWire 기본과 동일). 필요 시 환경 변수로 고정:

@@ -1,6 +1,6 @@
 import time
-import RPi.GPIO as GPIO
 from button import setup, is_pressed, cleanup
+from gui_client import show_gui
 from recorder import record_while_pressed
 from stt import transcribe
 from llm import ask_claude
@@ -24,17 +24,20 @@ def main():
         while True:
             # 버튼 누를 때까지 대기
             if is_pressed():
+                show_gui("듣고 있어요...")
                 speak("네, 말씀하세요.")
-                
+
                 # 버튼 누르는 동안 녹음
                 success = record_while_pressed(is_pressed)
                 
                 if success:
+                    show_gui("생각 중...")
                     # STT
                     text = transcribe()
                     
                     if text:
                         print(f"할머니: {text}")
+                        show_gui(f'당신: "{text}"')
 
                         # 대화 기록에 추가
                         messages = add_message(messages, "user", text)
@@ -45,6 +48,7 @@ def main():
                         
                         # Claude 호출
                         response = ask_claude(messages)
+                        show_gui(f'저: "{response}"', append=True)
                         print(f"어시스턴트: {response}")
                         
                         # 대화 기록에 추가

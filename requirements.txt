@@ -1,4 +1,5 @@
 # 음성 어시스턴트 직접 의존성 (pip install -r requirements.txt)
+# 큰 글씨 화면: PyQt6는 cli-gui 쪽 pyproject.toml에 있음 → pip install -e ../cli-gui
 anthropic==0.86.0
 gTTS==2.5.4
 numpy==2.4.3
