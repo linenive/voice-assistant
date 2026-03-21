@@ -1,0 +1,10 @@
+# 음성 어시스턴트 직접 의존성 (pip install -r requirements.txt)
+anthropic==0.86.0
+gTTS==2.5.4
+numpy==2.4.3
+openai==2.29.0
+python-dotenv==1.2.2
+pytz==2026.1.post1
+RPi.GPIO==0.7.1
+scipy==1.17.1
+sounddevice==0.5.5
