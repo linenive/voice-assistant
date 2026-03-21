@@ -1,7 +1,7 @@
 import json
 import os
 from datetime import datetime
-from config import HISTORY_PATH, MAX_HISTORY
+from .config import HISTORY_PATH, MAX_HISTORY
 
 
 def get_history_path():

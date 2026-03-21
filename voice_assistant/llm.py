@@ -1,9 +1,9 @@
 import time
 
 import anthropic
-from config import ANTHROPIC_API_KEY, MODEL, MAX_TOKENS, SYSTEM_PROMPT
-from history import get_claude_messages
-from memory import search_memories
+from .config import ANTHROPIC_API_KEY, MODEL, MAX_TOKENS, SYSTEM_PROMPT
+from .history import get_claude_messages
+from .memory import search_memories
 from datetime import datetime
 import pytz
 

@@ -1,5 +1,5 @@
 import openai
-from config import OPENAI_API_KEY, RECORDING_PATH
+from .config import OPENAI_API_KEY, RECORDING_PATH
 
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
 

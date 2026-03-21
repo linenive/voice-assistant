@@ -14,7 +14,9 @@ _VALID_PARTITIONS = frozenset({0, 1, 2})
 
 
 def _cli_src() -> Path | None:
-    p = Path(__file__).resolve().parent.parent / "cli-gui" / "src"
+    # voice_assistant 패키지의 부모(프로젝트 루트) 옆의 cli-gui
+    _repo = Path(__file__).resolve().parent.parent
+    p = _repo.parent / "cli-gui" / "src"
     return p if (p / "cli_gui").is_dir() else None
 
 

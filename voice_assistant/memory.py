@@ -4,7 +4,7 @@ import re
 from datetime import datetime
 
 import anthropic
-from config import ANTHROPIC_API_KEY, HISTORY_PATH, MEMORY_MODEL
+from .config import ANTHROPIC_API_KEY, HISTORY_PATH, MEMORY_MODEL
 
 # 장기 기억은 history 폴더 안의 별도 파일에 저장
 MEMORY_FILE = os.path.join(HISTORY_PATH, "long_memory.json")

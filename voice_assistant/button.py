@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-from config import BUTTON_PIN
+from .config import BUTTON_PIN
 
 def setup():
     """GPIO 초기화"""

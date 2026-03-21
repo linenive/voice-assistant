@@ -9,14 +9,16 @@
 
 ## 프로젝트 구성
 voice-assistant/
-  ├── main.py          # 메인 루프
-  ├── gui_client.py    # cli-gui 창에 상태 표시(선택)
-  ├── stt.py           # 음성 → 텍스트 (Whisper)
-  ├── llm.py           # Claude API 호출
-  ├── tts.py           # 텍스트 → 음성 (gTTS)
-  ├── button.py        # 버튼 제어 (GPIO)
-  ├── history.py       # 대화 기록 관리
-  ├── config.py
+  ├── main.py                 # 루트 엔트리 → `voice_assistant.app`
+  ├── voice_assistant/        # 애플리케이션 패키지
+  │   ├── app.py              # 스레드 기동·메인 루프
+  │   ├── config.py
+  │   ├── state.py / partitions.py
+  │   ├── gui_client.py       # cli-gui (선택)
+  │   ├── stt.py / llm.py / tts.py / …
+  │   └── threads/          # 버튼 루프·녹음 큐·LLM 스케줄러
+  ├── tests/                # 스크립트형 테스트
+  ├── history/              # 대화·장기기억 JSON
   └── README.md
 
 ## 자주 쓰는 명령어
@@ -26,6 +28,8 @@ source .venv/bin/activate
 
 ### 프로그램 실행
 python3 main.py
+# 또는
+python3 -m voice_assistant
 
 ### Pi 재부팅
 sudo reboot

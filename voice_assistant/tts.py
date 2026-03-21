@@ -5,7 +5,7 @@ from collections.abc import Callable
 
 from gtts import gTTS
 
-from config import RESPONSE_PATH, ALSA_PLAYBACK_DEVICE
+from .config import RESPONSE_PATH, ALSA_PLAYBACK_DEVICE
 
 _play_lock = threading.Lock()
 _speak_lock = threading.Lock()

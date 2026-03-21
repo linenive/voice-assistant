@@ -1,7 +1,7 @@
 import sounddevice as sd
 import scipy.io.wavfile as wav
 import numpy as np
-from config import SAMPLE_RATE, CHANNELS, RECORDING_PATH, INPUT_DEVICE
+from .config import SAMPLE_RATE, CHANNELS, RECORDING_PATH, INPUT_DEVICE
 
 def record(duration=10):
     """버튼 누르는 동안 녹음"""
